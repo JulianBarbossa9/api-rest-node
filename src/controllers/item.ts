@@ -1,5 +1,6 @@
 import { Request, Response } from "express"
 import { handleHttp } from "../utils/error.handle"
+import { insertItem } from "../service/item"
 
 const getItem = (req: Request, res: Response) => {
   try {
@@ -25,11 +26,12 @@ const updateItem = (req: Request, res: Response) => {
   }
 }
 
-const postItem = ({ body }: Request, res: Response) => {
+const postItem = async ({ body }: Request, res: Response) => {
   try {
-    res.send(body)
+    const responseItem = await insertItem(body)
+    res.send(responseItem)
   } catch (error)  {
-    handleHttp(res, 'ERROR_POST_ITEM')
+    handleHttp(res, 'ERROR_POST_ITEM', error)
   }
 }
 
