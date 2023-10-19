@@ -1,7 +1,7 @@
 import { Request, Response } from "express"
 import { loginUser, registerNewUser } from "../service/auth"
 
-const resgisterCtrl =async ({body}: Request, res: Response) => {
+const registerCtrl =async ({body}: Request, res: Response) => {
   const responseUser = await registerNewUser(body)
   res.send(responseUser)
 }
@@ -18,4 +18,4 @@ const loginCtrl =async ({body}: Request, res: Response) => {
   }
 }
 
-export { resgisterCtrl, loginCtrl}
+export { registerCtrl, loginCtrl}
